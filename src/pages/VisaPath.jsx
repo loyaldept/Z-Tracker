@@ -29,37 +29,34 @@ const o1Progress = [
 const backupVisas = [
   {
     country: 'Australia',
-    flag: '🇦🇺',
+    flag: '\u{1F1E6}\u{1F1FA}',
     type: 'Global Talent Visa (subclass 858)',
     status: 'Researching',
     color: '#f59e0b',
-    bgColor: '#fffbeb',
     notes: 'Target sector: DigiTech. Requires nominator & EOI.',
   },
   {
     country: 'United Kingdom',
-    flag: '🇬🇧',
+    flag: '\u{1F1EC}\u{1F1E7}',
     type: 'Start-Up Visa',
     status: 'Planned',
     color: '#3b82f6',
-    bgColor: '#eff6ff',
     notes: 'Requires endorsement from approved body. Innovation-focused.',
   },
   {
     country: 'Canada',
-    flag: '🇨🇦',
+    flag: '\u{1F1E8}\u{1F1E6}',
     type: 'Visa',
     status: 'Obtained',
     color: '#10b981',
-    bgColor: '#ecfdf5',
     notes: 'Canadian visa obtained and secured.',
   },
 ]
 
 const statusColors = {
-  in_progress: { bg: 'bg-blue-50', text: 'text-blue-600', label: 'In Progress' },
-  pending: { bg: 'bg-slate-50', text: 'text-slate-400', label: 'Pending' },
-  done: { bg: 'bg-green-50', text: 'text-green-600', label: 'Complete' },
+  in_progress: { bg: 'bg-blue-500/10', text: 'text-blue-400', label: 'In Progress' },
+  pending: { bg: 'bg-white/[0.04]', text: 'text-white/30', label: 'Pending' },
+  done: { bg: 'bg-green-500/10', text: 'text-green-400', label: 'Complete' },
 }
 
 export default function VisaPath() {
@@ -81,136 +78,133 @@ export default function VisaPath() {
 
   return (
     <div className="space-y-8 animate-fade-in">
-      {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Visa Path</h1>
-        <p className="text-sm text-slate-500 mt-1">Immigration strategy & progress tracking</p>
+        <h1 className="text-2xl font-bold text-white tracking-tight">Visa Path</h1>
+        <p className="text-sm text-white/40 mt-1">Immigration strategy & progress tracking</p>
       </div>
 
       {/* Current Status Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {/* F1 Visa */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
+        <div className="glass-card rounded-2xl p-5">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-                <Shield size={16} className="text-green-600" />
+              <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
+                <Shield size={16} className="text-green-400" />
               </div>
-              <span className="text-sm font-semibold text-slate-900">F1 Student Visa</span>
+              <span className="text-sm font-semibold text-white/90">F1 Student Visa</span>
             </div>
-            <span className="text-[10px] bg-green-50 text-green-600 px-2 py-0.5 rounded-full font-bold">ACTIVE</span>
-          </div>
-          <div className="space-y-2 text-xs text-slate-600">
-            <div className="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>Status</span>
-              <span className="font-semibold text-slate-900">Active — F1</span>
-            </div>
-            <div className="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>Valid Until</span>
-              <span className="font-semibold text-slate-900">Dec 22, 2026</span>
-            </div>
-            <div className="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>Institution</span>
-              <span className="font-semibold text-slate-900">Bard College</span>
-            </div>
-          </div>
-        </div>
-
-        {/* OPT */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
-                <Clock size={16} className="text-amber-600" />
-              </div>
-              <span className="text-sm font-semibold text-slate-900">OPT</span>
-            </div>
-            <span className="text-[10px] bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full font-bold">UPCOMING</span>
-          </div>
-          <div className="space-y-2 text-xs text-slate-600">
-            <div className="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>Application</span>
-              <span className="font-semibold text-slate-900">July 2026</span>
-            </div>
-            <div className="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>Start Date</span>
-              <span className="font-semibold text-slate-900">Jan 1, 2027</span>
-            </div>
-            <div className="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>End Date</span>
-              <span className="font-semibold text-slate-900">Dec 31, 2027</span>
-            </div>
-          </div>
-        </div>
-
-        {/* O1 Target */}
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-5 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                <Star size={16} className="text-blue-400" />
-              </div>
-              <span className="text-sm font-semibold">O1 Visa — Target</span>
-            </div>
-            <span className="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full font-bold">PRIORITY</span>
+            <span className="text-[10px] bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full font-bold border border-green-500/20">ACTIVE</span>
           </div>
           <div className="space-y-2 text-xs">
-            <div className="flex justify-between p-2 bg-white/5 rounded-lg">
-              <span className="text-slate-400">Apply Date</span>
-              <span className="font-semibold">Jan 10, 2027</span>
+            <div className="flex justify-between p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+              <span className="text-white/40">Status</span>
+              <span className="font-semibold text-white/80">Active — F1</span>
             </div>
-            <div className="flex justify-between p-2 bg-white/5 rounded-lg">
-              <span className="text-slate-400">Through</span>
-              <span className="font-semibold">Siml Inc</span>
+            <div className="flex justify-between p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+              <span className="text-white/40">Valid Until</span>
+              <span className="font-semibold text-white/80">Dec 22, 2026</span>
             </div>
-            <div className="flex justify-between p-2 bg-white/5 rounded-lg">
-              <span className="text-slate-400">Category</span>
-              <span className="font-semibold">Extraordinary Ability</span>
+            <div className="flex justify-between p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+              <span className="text-white/40">Institution</span>
+              <span className="font-semibold text-white/80">Bard College</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-2xl p-5">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                <Clock size={16} className="text-amber-400" />
+              </div>
+              <span className="text-sm font-semibold text-white/90">OPT</span>
+            </div>
+            <span className="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full font-bold border border-amber-500/20">UPCOMING</span>
+          </div>
+          <div className="space-y-2 text-xs">
+            <div className="flex justify-between p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+              <span className="text-white/40">Application</span>
+              <span className="font-semibold text-white/80">July 2026</span>
+            </div>
+            <div className="flex justify-between p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+              <span className="text-white/40">Start Date</span>
+              <span className="font-semibold text-white/80">Jan 1, 2027</span>
+            </div>
+            <div className="flex justify-between p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+              <span className="text-white/40">End Date</span>
+              <span className="font-semibold text-white/80">Dec 31, 2027</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden rounded-2xl border border-white/[0.06]">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10" />
+          <div className="relative z-10 p-5">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                  <Star size={16} className="text-blue-400" />
+                </div>
+                <span className="text-sm font-semibold text-white/90">O1 Visa — Target</span>
+              </div>
+              <span className="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full font-bold border border-blue-500/20">PRIORITY</span>
+            </div>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between p-2 bg-white/[0.04] rounded-lg">
+                <span className="text-white/30">Apply Date</span>
+                <span className="font-semibold text-white/80">Jan 10, 2027</span>
+              </div>
+              <div className="flex justify-between p-2 bg-white/[0.04] rounded-lg">
+                <span className="text-white/30">Through</span>
+                <span className="font-semibold text-white/80">Siml Inc</span>
+              </div>
+              <div className="flex justify-between p-2 bg-white/[0.04] rounded-lg">
+                <span className="text-white/30">Category</span>
+                <span className="font-semibold text-white/80">Extraordinary Ability</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* O1 Progress Tracker */}
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
+      <div className="glass-card rounded-2xl p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-base font-semibold text-slate-900">O1 Visa — Progress Checklist</h3>
-            <p className="text-xs text-slate-500 mt-0.5">Building the extraordinary ability case through Siml Inc</p>
+            <h3 className="text-base font-semibold text-white/90">O1 Visa — Progress Checklist</h3>
+            <p className="text-xs text-white/30 mt-0.5">Building the extraordinary ability case through Siml Inc</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-slate-900">{completedSteps}/{totalSteps}</span>
-            <span className="text-xs text-slate-400">steps</span>
+            <span className="text-sm font-bold text-white/90">{completedSteps}/{totalSteps}</span>
+            <span className="text-xs text-white/30">steps</span>
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="h-3 w-full bg-slate-100 rounded-full mb-6 overflow-hidden">
+        <div className="h-3 w-full bg-white/[0.04] rounded-full mb-6 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-500 relative"
+            className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-500 relative shadow-[0_0_12px_rgba(59,130,246,0.3)]"
             style={{ width: `${Math.max(progressPercent, 5)}%` }}
           >
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-blue-500 rounded-full shadow-sm"></div>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg shadow-blue-500/50 border-2 border-blue-400"></div>
           </div>
         </div>
 
-        {/* Steps */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {o1Progress.map((step, i) => (
             <div
               key={i}
               className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${
                 step.done
-                  ? 'bg-green-50 border-green-100'
-                  : 'bg-slate-50 border-slate-100'
+                  ? 'bg-green-500/10 border-green-500/20'
+                  : 'bg-white/[0.02] border-white/[0.04]'
               }`}
             >
               {step.done ? (
-                <CheckCircle2 size={18} className="text-green-500 shrink-0" />
+                <CheckCircle2 size={18} className="text-green-400 shrink-0" />
               ) : (
-                <Circle size={18} className="text-slate-300 shrink-0" />
+                <Circle size={18} className="text-white/20 shrink-0" />
               )}
-              <span className={`text-sm font-medium ${step.done ? 'text-green-700' : 'text-slate-600'}`}>
+              <span className={`text-sm font-medium ${step.done ? 'text-green-300' : 'text-white/50'}`}>
                 {step.label}
               </span>
             </div>
@@ -219,13 +213,13 @@ export default function VisaPath() {
       </div>
 
       {/* O1 Criteria */}
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
+      <div className="glass-card rounded-2xl p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-base font-semibold text-slate-900">O1 Eligibility Criteria</h3>
-            <p className="text-xs text-slate-500 mt-0.5">Must meet at least 3 of 8 criteria</p>
+            <h3 className="text-base font-semibold text-white/90">O1 Eligibility Criteria</h3>
+            <p className="text-xs text-white/30 mt-0.5">Must meet at least 3 of 8 criteria</p>
           </div>
-          <span className="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded-full font-bold">
+          <span className="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full font-bold border border-blue-500/20">
             {o1Criteria.filter((c) => c.status === 'in_progress').length} Active
           </span>
         </div>
@@ -236,23 +230,23 @@ export default function VisaPath() {
             return (
               <div
                 key={criterion.id}
-                className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-200 transition-all"
+                className="flex items-start gap-3 p-4 bg-white/[0.02] rounded-xl border border-white/[0.04] hover:border-white/[0.08] transition-all"
               >
                 <div className={`w-6 h-6 rounded-full ${style.bg} flex items-center justify-center shrink-0 mt-0.5`}>
                   {criterion.status === 'in_progress' ? (
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                   ) : (
                     <Circle size={10} className={style.text} />
                   )}
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-semibold text-slate-900">{criterion.title}</span>
+                    <span className="text-sm font-semibold text-white/80">{criterion.title}</span>
                     <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${style.bg} ${style.text}`}>
                       {style.label}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500">{criterion.description}</p>
+                  <p className="text-xs text-white/30">{criterion.description}</p>
                 </div>
               </div>
             )
@@ -261,15 +255,15 @@ export default function VisaPath() {
       </div>
 
       {/* Achievements */}
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
+      <div className="glass-card rounded-2xl p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-base font-semibold text-slate-900">Achievements Log</h3>
-            <p className="text-xs text-slate-500 mt-0.5">Track accomplishments for O1 petition</p>
+            <h3 className="text-base font-semibold text-white/90">Achievements Log</h3>
+            <p className="text-xs text-white/30 mt-0.5">Track accomplishments for O1 petition</p>
           </div>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-500 transition-colors"
           >
             <Plus size={14} />
             Add Achievement
@@ -284,11 +278,11 @@ export default function VisaPath() {
               onChange={(e) => setNewAchievement(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && addAchievement()}
               placeholder="Describe your achievement..."
-              className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:ring-2 ring-blue-500/20 focus:border-blue-300"
+              className="flex-1 px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white/80 outline-none focus:ring-2 ring-blue-500/20 focus:border-blue-500/30 placeholder:text-white/20"
             />
             <button
               onClick={addAchievement}
-              className="px-4 py-2 bg-slate-900 text-white text-xs font-medium rounded-lg hover:bg-slate-800"
+              className="px-4 py-2 bg-white/10 text-white text-xs font-medium rounded-lg hover:bg-white/15"
             >
               Save
             </button>
@@ -296,20 +290,20 @@ export default function VisaPath() {
         )}
 
         {achievements.length === 0 ? (
-          <div className="text-center py-8 text-slate-400">
+          <div className="text-center py-8 text-white/20">
             <Star size={24} className="mx-auto mb-2 opacity-30" />
             <p className="text-sm font-medium">No achievements logged yet</p>
-            <p className="text-xs mt-1">Start adding your accomplishments</p>
+            <p className="text-xs mt-1 text-white/10">Start adding your accomplishments</p>
           </div>
         ) : (
           <div className="space-y-2">
             {achievements.map((a, i) => (
-              <div key={i} className="flex items-center gap-3 p-3 bg-green-50 rounded-xl border border-green-100">
-                <CheckCircle2 size={16} className="text-green-500 shrink-0" />
+              <div key={i} className="flex items-center gap-3 p-3 bg-green-500/10 rounded-xl border border-green-500/20">
+                <CheckCircle2 size={16} className="text-green-400 shrink-0" />
                 <div className="flex-1">
-                  <span className="text-sm text-slate-900 font-medium">{a.text}</span>
+                  <span className="text-sm text-white/80 font-medium">{a.text}</span>
                 </div>
-                <span className="text-[10px] text-slate-400">{a.date}</span>
+                <span className="text-[10px] text-white/30">{a.date}</span>
               </div>
             ))}
           </div>
@@ -318,27 +312,27 @@ export default function VisaPath() {
 
       {/* Backup Visas */}
       <div>
-        <h3 className="text-base font-semibold text-slate-900 mb-4">Backup Visa Options</h3>
+        <h3 className="text-base font-semibold text-white/90 mb-4">Backup Visa Options</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {backupVisas.map((visa) => (
             <div
               key={visa.country}
-              className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all"
+              className="glass-card rounded-2xl p-5 transition-all"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">{visa.flag}</span>
-                  <span className="text-sm font-semibold text-slate-900">{visa.country}</span>
+                  <span className="text-sm font-semibold text-white/90">{visa.country}</span>
                 </div>
                 <span
                   className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                  style={{ backgroundColor: visa.bgColor, color: visa.color }}
+                  style={{ backgroundColor: `${visa.color}15`, color: visa.color }}
                 >
                   {visa.status}
                 </span>
               </div>
-              <p className="text-xs font-semibold text-slate-700 mb-2">{visa.type}</p>
-              <p className="text-xs text-slate-500">{visa.notes}</p>
+              <p className="text-xs font-semibold text-white/60 mb-2">{visa.type}</p>
+              <p className="text-xs text-white/30">{visa.notes}</p>
             </div>
           ))}
         </div>

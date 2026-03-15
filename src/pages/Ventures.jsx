@@ -48,8 +48,8 @@ export default function Ventures() {
       {/* Page Header */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Revenue Channels</h1>
-          <p className="text-sm text-slate-500 mt-1">Track performance across all 9 ventures</p>
+          <h1 className="text-2xl font-bold text-white tracking-tight">Revenue Channels</h1>
+          <p className="text-sm text-white/40 mt-1">Track performance across all 9 ventures</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           {categories.map((cat) => (
@@ -58,8 +58,8 @@ export default function Ventures() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${
                 selectedCategory === cat
-                  ? 'bg-slate-900 text-white shadow-sm'
-                  : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-300'
+                  ? 'bg-white/10 text-white border border-white/10'
+                  : 'text-white/40 border border-white/[0.06] hover:border-white/10 hover:text-white/60'
               }`}
             >
               {cat}
@@ -69,25 +69,25 @@ export default function Ventures() {
       </div>
 
       {/* Combined Revenue Chart */}
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
+      <div className="glass-card rounded-2xl p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-base font-semibold text-slate-900">Combined Revenue — All Channels</h3>
-            <p className="text-xs text-slate-500 mt-0.5">Stacked view of revenue streams</p>
+            <h3 className="text-base font-semibold text-white/90">Combined Revenue — All Channels</h3>
+            <p className="text-xs text-white/30 mt-0.5">Stacked view of revenue streams</p>
           </div>
         </div>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={combinedData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-            <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+            <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'rgba(255,255,255,0.3)' }} axisLine={false} tickLine={false} />
+            <YAxis tick={{ fontSize: 11, fill: 'rgba(255,255,255,0.3)' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
             <Tooltip
               contentStyle={{
-                background: 'white',
-                border: '1px solid #e2e8f0',
+                background: 'rgba(20,20,35,0.9)',
+                border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: '12px',
                 fontSize: '11px',
-                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+                color: 'white',
               }}
             />
             {ventures.map((v) => (
@@ -95,11 +95,11 @@ export default function Ventures() {
             ))}
           </BarChart>
         </ResponsiveContainer>
-        <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-slate-100">
+        <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-white/[0.04]">
           {ventures.map((v) => (
             <div key={v.id} className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: v.color }}></div>
-              <span className="text-[10px] text-slate-600 font-medium">{v.name}</span>
+              <span className="text-[10px] text-white/40 font-medium">{v.name}</span>
             </div>
           ))}
         </div>
@@ -114,32 +114,32 @@ export default function Ventures() {
             <button
               key={v.id}
               onClick={() => setSelectedVenture(isSelected ? null : v.id)}
-              className={`text-left bg-white border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all ${
-                isSelected ? 'border-blue-300 ring-2 ring-blue-100' : 'border-slate-200/80 hover:border-slate-300'
+              className={`text-left glass-card rounded-2xl p-5 transition-all ${
+                isSelected ? 'ring-1 ring-blue-500/30 border-blue-500/20' : ''
               }`}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ backgroundColor: v.bgColor }}
+                    style={{ backgroundColor: `${v.color}15` }}
                   >
                     <Icon size={18} style={{ color: v.color }} />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-slate-900">{v.name}</p>
-                    <p className="text-[10px] text-slate-400 font-medium">{v.location}</p>
+                    <p className="text-sm font-semibold text-white/90">{v.name}</p>
+                    <p className="text-[10px] text-white/30 font-medium">{v.location}</p>
                   </div>
                 </div>
                 <span
                   className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                  style={{ backgroundColor: v.bgColor, color: v.color }}
+                  style={{ backgroundColor: `${v.color}15`, color: v.color }}
                 >
                   {v.category}
                 </span>
               </div>
 
-              <p className="text-xs text-slate-500 mb-4">{v.description}</p>
+              <p className="text-xs text-white/40 mb-4">{v.description}</p>
 
               {/* Mini Chart */}
               <div className="h-16 mb-4">
@@ -147,7 +147,7 @@ export default function Ventures() {
                   <AreaChart data={v.chartData}>
                     <defs>
                       <linearGradient id={`grad-${v.id}`} x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor={v.color} stopOpacity={0.2} />
+                        <stop offset="0%" stopColor={v.color} stopOpacity={0.3} />
                         <stop offset="100%" stopColor={v.color} stopOpacity={0} />
                       </linearGradient>
                     </defs>
@@ -157,31 +157,30 @@ export default function Ventures() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-slate-50 rounded-lg p-2.5 border border-slate-100">
-                  <span className="text-[10px] text-slate-400 font-bold uppercase block">Revenue</span>
-                  <span className="text-sm font-bold text-slate-900">$0.00</span>
+                <div className="bg-white/[0.03] rounded-lg p-2.5 border border-white/[0.04]">
+                  <span className="text-[10px] text-white/30 font-bold uppercase block">Revenue</span>
+                  <span className="text-sm font-bold text-white/90">$0.00</span>
                 </div>
-                <div className="bg-slate-50 rounded-lg p-2.5 border border-slate-100">
-                  <span className="text-[10px] text-slate-400 font-bold uppercase block">MRR</span>
-                  <span className="text-sm font-bold text-slate-900">$0.00</span>
+                <div className="bg-white/[0.03] rounded-lg p-2.5 border border-white/[0.04]">
+                  <span className="text-[10px] text-white/30 font-bold uppercase block">MRR</span>
+                  <span className="text-sm font-bold text-white/90">$0.00</span>
                 </div>
               </div>
 
-              {/* Siml-specific: Customers chart */}
               {v.id === 'siml' && (
-                <div className="mt-3 p-3 bg-blue-50/50 rounded-xl border border-blue-100">
+                <div className="mt-3 p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold text-blue-600 uppercase">Customers</span>
+                    <span className="text-[10px] font-bold text-blue-400 uppercase">Customers</span>
                     <Users size={12} className="text-blue-400" />
                   </div>
                   <div className="flex items-end gap-4">
                     <div>
-                      <p className="text-lg font-bold text-slate-900">0</p>
-                      <p className="text-[10px] text-slate-500">Total</p>
+                      <p className="text-lg font-bold text-white/90">0</p>
+                      <p className="text-[10px] text-white/30">Total</p>
                     </div>
                     <div>
-                      <p className="text-lg font-bold text-blue-600">0</p>
-                      <p className="text-[10px] text-slate-500">Paying</p>
+                      <p className="text-lg font-bold text-blue-400">0</p>
+                      <p className="text-[10px] text-white/30">Paying</p>
                     </div>
                     <div className="flex-1 flex gap-px items-end h-10 justify-end">
                       {[20, 35, 25, 40, 30, 50, 45, 60].map((h, i) => (
@@ -190,7 +189,7 @@ export default function Ventures() {
                           className="w-2 rounded-t-sm"
                           style={{
                             height: `${h * 0.5}px`,
-                            backgroundColor: i >= 6 ? '#3b82f6' : '#dbeafe',
+                            backgroundColor: i >= 6 ? '#3b82f6' : 'rgba(59,130,246,0.2)',
                           }}
                         ></div>
                       ))}
@@ -199,22 +198,21 @@ export default function Ventures() {
                 </div>
               )}
 
-              {/* Corvus-specific */}
               {v.id === 'corvus' && (
-                <div className="mt-3 p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+                <div className="mt-3 p-3 bg-purple-500/10 rounded-xl border border-purple-500/20">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold text-purple-600 uppercase">Partnership</span>
+                    <span className="text-[10px] font-bold text-purple-400 uppercase">Partnership</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="flex-1">
-                      <p className="text-xs text-slate-700 font-medium">Zuhayr — 50%</p>
-                      <div className="h-1.5 bg-purple-200 rounded-full mt-1">
+                      <p className="text-xs text-white/60 font-medium">Zuhayr — 50%</p>
+                      <div className="h-1.5 bg-purple-500/20 rounded-full mt-1">
                         <div className="h-full bg-purple-500 w-1/2 rounded-full"></div>
                       </div>
                     </div>
                     <div className="flex-1">
-                      <p className="text-xs text-slate-700 font-medium">Erkebai — 50%</p>
-                      <div className="h-1.5 bg-indigo-200 rounded-full mt-1">
+                      <p className="text-xs text-white/60 font-medium">Erkebai — 50%</p>
+                      <div className="h-1.5 bg-indigo-500/20 rounded-full mt-1">
                         <div className="h-full bg-indigo-500 w-1/2 rounded-full"></div>
                       </div>
                     </div>
@@ -222,14 +220,13 @@ export default function Ventures() {
                 </div>
               )}
 
-              {/* Chrome Extensions specific */}
               {v.id === 'chrome' && (
-                <div className="mt-3 p-3 bg-green-50/50 rounded-xl border border-green-100">
+                <div className="mt-3 p-3 bg-green-500/10 rounded-xl border border-green-500/20">
                   <div className="flex items-center gap-2 mb-1">
-                    <Chrome size={12} className="text-green-600" />
-                    <span className="text-[10px] font-bold text-green-600 uppercase">Extensions</span>
+                    <Chrome size={12} className="text-green-400" />
+                    <span className="text-[10px] font-bold text-green-400 uppercase">Extensions</span>
                   </div>
-                  <p className="text-xs text-slate-600">LetsWind + more coming</p>
+                  <p className="text-xs text-white/40">LetsWind + more coming</p>
                 </div>
               )}
             </button>
@@ -239,23 +236,23 @@ export default function Ventures() {
 
       {/* Detail Panel */}
       {detail && (
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm animate-slide-up">
+        <div className="glass-card rounded-2xl p-6 animate-slide-up">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: detail.bgColor }}
+                style={{ backgroundColor: `${detail.color}15` }}
               >
                 {(() => { const Icon = ventureIcons[detail.id] || Zap; return <Icon size={22} style={{ color: detail.color }} /> })()}
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900">{detail.name} — Detailed Analytics</h3>
-                <p className="text-xs text-slate-500">{detail.description} • {detail.location}</p>
+                <h3 className="text-lg font-semibold text-white/90">{detail.name} — Detailed Analytics</h3>
+                <p className="text-xs text-white/40">{detail.description} &bull; {detail.location}</p>
               </div>
             </div>
             <button
               onClick={() => setSelectedVenture(null)}
-              className="text-xs text-slate-400 hover:text-slate-600 font-medium"
+              className="text-xs text-white/30 hover:text-white/60 font-medium"
             >
               Close
             </button>
@@ -263,30 +260,32 @@ export default function Ventures() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-3">Revenue Trend</h4>
+              <h4 className="text-sm font-semibold text-white/80 mb-3">Revenue Trend</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <AreaChart data={detail.chartData}>
                   <defs>
                     <linearGradient id={`detail-grad-${detail.id}`} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor={detail.color} stopOpacity={0.2} />
+                      <stop offset="0%" stopColor={detail.color} stopOpacity={0.3} />
                       <stop offset="100%" stopColor={detail.color} stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                  <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                  <Tooltip />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+                  <XAxis dataKey="month" tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.3)' }} axisLine={false} tickLine={false} />
+                  <YAxis tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.3)' }} axisLine={false} tickLine={false} />
+                  <Tooltip
+                    contentStyle={{ background: 'rgba(20,20,35,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '11px', color: 'white' }}
+                  />
                   <Area type="monotone" dataKey="revenue" stroke={detail.color} strokeWidth={2} fill={`url(#detail-grad-${detail.id})`} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {Object.entries(detail.metrics).map(([key, val]) => (
-                <div key={key} className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <span className="text-[10px] text-slate-400 font-bold uppercase block mb-1">
+                <div key={key} className="bg-white/[0.03] rounded-xl p-4 border border-white/[0.04]">
+                  <span className="text-[10px] text-white/30 font-bold uppercase block mb-1">
                     {key.replace(/([A-Z])/g, ' $1').trim()}
                   </span>
-                  <span className="text-lg font-bold text-slate-900">
+                  <span className="text-lg font-bold text-white/90">
                     {typeof val === 'number' && key.toLowerCase().includes('revenue') || key === 'mrr'
                       ? `$${val.toFixed(2)}`
                       : key === 'growth' || key === 'winRate' || key === 'openRate'
@@ -298,10 +297,10 @@ export default function Ventures() {
             </div>
           </div>
 
-          <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-100">
-            <p className="text-xs text-blue-700 font-medium">
+          <div className="mt-6 p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+            <p className="text-xs text-blue-300 font-medium">
               <span className="font-bold">API Integration Required:</span> Connect your {detail.name} API to start tracking real revenue data.
-              Data shown is placeholder — configure in Settings → Integrations.
+              Data shown is placeholder — configure in Settings &rarr; Integrations.
             </p>
           </div>
         </div>

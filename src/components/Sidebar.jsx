@@ -32,14 +32,14 @@ export default function Sidebar() {
       <div className="p-6 lg:p-8 pb-4">
         <div className="flex items-center gap-3 mb-10">
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-lg blur opacity-20"></div>
-            <div className="relative bg-slate-900 text-white w-9 h-9 rounded-lg flex items-center justify-center font-bold tracking-tighter text-xs">
+            <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-500 to-cyan-400 rounded-xl blur opacity-30 animate-pulse-glow"></div>
+            <div className="relative bg-gradient-to-br from-blue-600 to-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold tracking-tighter text-xs shadow-lg shadow-blue-500/20">
               ZT
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="font-semibold tracking-tight text-base leading-none">ZTrack</span>
-            <span className="text-[10px] text-slate-400 font-medium tracking-widest mt-0.5">
+            <span className="font-bold tracking-tight text-base leading-none text-white">ZTrack</span>
+            <span className="text-[9px] text-white/30 font-bold tracking-[0.2em] mt-0.5">
               DASHBOARD
             </span>
           </div>
@@ -49,7 +49,7 @@ export default function Sidebar() {
         <div className="space-y-6">
           <div>
             <div className="px-3 mb-3">
-              <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">
+              <span className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">
                 Navigation
               </span>
             </div>
@@ -67,19 +67,19 @@ export default function Sidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       isActive
-                        ? 'bg-white border border-slate-200/80 shadow-sm text-slate-900'
-                        : 'text-slate-500 hover:bg-white/50 hover:text-slate-900'
+                        ? 'bg-white/[0.08] border border-white/[0.08] text-white shadow-sm'
+                        : 'text-white/40 hover:bg-white/[0.04] hover:text-white/70'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <Icon
                         size={18}
-                        className={isActive ? 'text-blue-600' : 'text-slate-400'}
+                        className={isActive ? 'text-blue-400' : 'text-white/30'}
                       />
                       <span>{item.label}</span>
                     </div>
                     {item.badge && isActive && (
-                      <span className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded-md font-semibold">
+                      <span className="text-[9px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded-md font-bold border border-blue-500/20">
                         {item.badge}
                       </span>
                     )}
@@ -91,7 +91,7 @@ export default function Sidebar() {
 
           <div>
             <div className="px-3 mb-3">
-              <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">
+              <span className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">
                 Academic & Life
               </span>
             </div>
@@ -106,13 +106,13 @@ export default function Sidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       isActive
-                        ? 'bg-white border border-slate-200/80 shadow-sm text-slate-900'
-                        : 'text-slate-500 hover:bg-white/50 hover:text-slate-900'
+                        ? 'bg-white/[0.08] border border-white/[0.08] text-white shadow-sm'
+                        : 'text-white/40 hover:bg-white/[0.04] hover:text-white/70'
                     }`}
                   >
                     <Icon
                       size={18}
-                      className={isActive ? 'text-blue-600' : 'text-slate-400'}
+                      className={isActive ? 'text-blue-400' : 'text-white/30'}
                     />
                     <span>{item.label}</span>
                   </NavLink>
@@ -123,7 +123,7 @@ export default function Sidebar() {
 
           <div>
             <div className="px-3 mb-3">
-              <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">
+              <span className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">
                 Planning
               </span>
             </div>
@@ -138,13 +138,13 @@ export default function Sidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       isActive
-                        ? 'bg-white border border-slate-200/80 shadow-sm text-slate-900'
-                        : 'text-slate-500 hover:bg-white/50 hover:text-slate-900'
+                        ? 'bg-white/[0.08] border border-white/[0.08] text-white shadow-sm'
+                        : 'text-white/40 hover:bg-white/[0.04] hover:text-white/70'
                     }`}
                   >
                     <Icon
                       size={18}
-                      className={isActive ? 'text-blue-600' : 'text-slate-400'}
+                      className={isActive ? 'text-blue-400' : 'text-white/30'}
                     />
                     <span>{item.label}</span>
                   </NavLink>
@@ -157,19 +157,19 @@ export default function Sidebar() {
 
       {/* User Profile */}
       <div className="mt-auto p-6">
-        <div className="bg-slate-50 border border-slate-200/50 p-4 rounded-2xl">
+        <div className="bg-white/[0.04] border border-white/[0.06] p-4 rounded-2xl">
           <div className="flex items-center gap-3">
             <div className="relative shrink-0">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/20">
                 ZZ
               </div>
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-[#0a0a0f] rounded-full"></div>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-slate-900 truncate tracking-tight">
+              <p className="text-sm font-semibold text-white/90 truncate tracking-tight">
                 Zuhayr Zhanoff
               </p>
-              <p className="text-[10px] text-slate-500 font-medium truncate">
+              <p className="text-[10px] text-white/30 font-medium truncate">
                 Founder & Builder
               </p>
             </div>
@@ -184,27 +184,27 @@ export default function Sidebar() {
       {/* Mobile hamburger */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 bg-white border border-slate-200 rounded-xl flex items-center justify-center shadow-sm"
+        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 bg-[#14141e] border border-white/10 rounded-xl flex items-center justify-center shadow-lg"
       >
-        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+        {mobileOpen ? <X size={18} className="text-white" /> : <Menu size={18} className="text-white" />}
       </button>
 
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/20 z-30"
+          className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex w-72 border-r border-slate-200/60 flex-col h-full glass relative z-20">
+      <aside className="hidden lg:flex w-72 border-r border-white/[0.06] flex-col h-full glass relative z-20">
         {sidebarContent}
       </aside>
 
       {/* Mobile sidebar */}
       <aside
-        className={`lg:hidden fixed inset-y-0 left-0 w-72 border-r border-slate-200/60 flex flex-col h-full bg-white/95 backdrop-blur-xl z-40 transform transition-transform duration-300 ${
+        className={`lg:hidden fixed inset-y-0 left-0 w-72 border-r border-white/[0.06] flex flex-col h-full bg-[#0a0a0f]/95 backdrop-blur-xl z-40 transform transition-transform duration-300 ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
