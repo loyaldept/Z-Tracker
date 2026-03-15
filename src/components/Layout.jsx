@@ -4,7 +4,7 @@ import Header from './Header'
 
 export default function Layout() {
   return (
-    <div className="bg-[#0a0a0f] text-white antialiased h-screen flex overflow-hidden dot-grid">
+    <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 text-slate-900 antialiased h-screen flex overflow-hidden">
       <Sidebar />
       <main className="flex-1 flex flex-col h-full overflow-hidden relative z-10">
         <Header />
