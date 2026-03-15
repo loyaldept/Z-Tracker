@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Lock, Eye, EyeOff, Sparkles } from 'lucide-react'
 import { loginWithPassword } from '../lib/supabase'
+import { useAuth } from '../context/AuthContext'
 
 export default function Login() {
   const [password, setPassword] = useState('')
@@ -9,6 +10,7 @@ export default function Login() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { refreshAuth } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,7 +20,8 @@ export default function Login() {
     const result = await loginWithPassword(password)
     
     if (result.success) {
-      navigate('/')
+      refreshAuth() // Refresh auth state after successful login
+      navigate('/', { replace: true })
     } else {
       setError(result.error)
     }
