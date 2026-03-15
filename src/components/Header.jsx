@@ -44,45 +44,45 @@ export default function Header() {
   })
 
   return (
-    <header className="h-16 lg:h-20 border-b border-slate-200/60 glass flex items-center justify-between px-4 lg:px-10 shrink-0">
+    <header className="h-16 lg:h-20 border-b border-white/[0.06] glass flex items-center justify-between px-4 lg:px-10 shrink-0">
       <div className="flex items-center gap-4 lg:gap-8 ml-12 lg:ml-0">
         <div className="hidden md:flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 font-bold">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-white/20 font-bold">
             Current Time
           </span>
-          <span className="text-xs font-semibold text-slate-900 mt-0.5 tabular-nums">
+          <span className="text-xs font-semibold text-white/80 mt-0.5 tabular-nums">
             {formattedTime}
           </span>
         </div>
 
-        <div className="hidden md:block h-8 w-px bg-slate-200"></div>
+        <div className="hidden md:block h-8 w-px bg-white/[0.06]"></div>
 
         <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 font-bold">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-white/20 font-bold">
             Today
           </span>
-          <span className="text-xs font-semibold text-slate-900 mt-0.5 tracking-tight">
+          <span className="text-xs font-semibold text-white/80 mt-0.5 tracking-tight">
             {formattedDate}
           </span>
         </div>
 
-        <div className="hidden sm:block h-8 w-px bg-slate-200"></div>
+        <div className="hidden sm:block h-8 w-px bg-white/[0.06]"></div>
 
         <div className="hidden sm:flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-blue-500 font-bold">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-blue-400/60 font-bold">
             End of 2026
           </span>
           <div className="flex gap-1.5 mt-0.5">
-            <span className="text-xs font-bold text-slate-900 tabular-nums bg-slate-100 px-1.5 py-0.5 rounded">
+            <span className="text-xs font-bold text-white/80 tabular-nums bg-white/[0.06] px-1.5 py-0.5 rounded border border-white/[0.04]">
               {countdown.days}d
             </span>
-            <span className="text-xs font-bold text-slate-900 tabular-nums bg-slate-100 px-1.5 py-0.5 rounded">
+            <span className="text-xs font-bold text-white/80 tabular-nums bg-white/[0.06] px-1.5 py-0.5 rounded border border-white/[0.04]">
               {countdown.hours}h
             </span>
-            <span className="text-xs font-bold text-slate-900 tabular-nums bg-slate-100 px-1.5 py-0.5 rounded">
+            <span className="text-xs font-bold text-white/80 tabular-nums bg-white/[0.06] px-1.5 py-0.5 rounded border border-white/[0.04]">
               {countdown.minutes}m
             </span>
-            <span className="text-xs font-bold text-blue-600 tabular-nums bg-blue-50 px-1.5 py-0.5 rounded">
+            <span className="text-xs font-bold text-blue-400 tabular-nums bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/20">
               {countdown.seconds}s
             </span>
           </div>
@@ -90,20 +90,20 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="hidden lg:flex bg-white border border-slate-200/80 rounded-xl pl-3 pr-2 py-1.5 items-center gap-2 shadow-sm">
-          <Search size={14} className="text-slate-400" />
+        <div className="hidden lg:flex bg-white/[0.04] border border-white/[0.06] rounded-xl pl-3 pr-2 py-1.5 items-center gap-2">
+          <Search size={14} className="text-white/30" />
           <input
             type="text"
             placeholder="Search..."
-            className="bg-transparent border-none text-xs font-medium outline-none w-36 text-slate-600 placeholder:text-slate-400"
+            className="bg-transparent border-none text-xs font-medium outline-none w-36 text-white/70 placeholder:text-white/20"
           />
-          <kbd className="h-5 flex items-center gap-1 rounded border border-slate-200 bg-slate-50 px-1.5 font-mono text-[10px] font-medium text-slate-400">
+          <kbd className="h-5 flex items-center gap-1 rounded border border-white/[0.08] bg-white/[0.04] px-1.5 font-mono text-[10px] font-medium text-white/30">
             ⌘K
           </kbd>
         </div>
-        <button className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-blue-600 transition-colors relative">
+        <button className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] text-white/40 hover:text-blue-400 transition-colors relative">
           <Bell size={16} />
-          <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
         </button>
         <button 
           onClick={() => { logout(); navigate('/login'); }}

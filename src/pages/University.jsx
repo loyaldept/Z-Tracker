@@ -17,7 +17,6 @@ const degrees = [
     status: 'Completed',
     progress: 100,
     color: '#10b981',
-    bgColor: '#ecfdf5',
     semesters: [
       { name: 'Fall 2022', credits: 18, gpa: '-' },
       { name: 'Spring 2023', credits: 18, gpa: '-' },
@@ -36,7 +35,6 @@ const degrees = [
     status: 'In Progress — Senior I',
     progress: 75,
     color: '#6366f1',
-    bgColor: '#eef2ff',
     currentYear: 'Senior I',
     seniorProject: true,
     semesters: [
@@ -77,99 +75,88 @@ export default function University() {
   return (
     <div className="space-y-8 animate-fade-in">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">University Progress</h1>
-        <p className="text-sm text-slate-500 mt-1">Academic journey tracker</p>
+        <h1 className="text-2xl font-bold text-white tracking-tight">University Progress</h1>
+        <p className="text-sm text-white/40 mt-1">Academic journey tracker</p>
       </div>
 
       {/* Degree Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {degrees.map((deg) => (
-          <div
-            key={deg.id}
-            className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm"
-          >
+          <div key={deg.id} className="glass-card rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center"
-                  style={{ backgroundColor: deg.bgColor }}
+                  style={{ backgroundColor: `${deg.color}15` }}
                 >
                   <GraduationCap size={20} style={{ color: deg.color }} />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">{deg.school}</p>
-                  <p className="text-xs text-slate-500">{deg.location}</p>
+                  <p className="text-sm font-semibold text-white/90">{deg.school}</p>
+                  <p className="text-xs text-white/30">{deg.location}</p>
                 </div>
               </div>
               <span
                 className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                style={{ backgroundColor: deg.bgColor, color: deg.color }}
+                style={{ backgroundColor: `${deg.color}15`, color: deg.color }}
               >
                 {deg.status}
               </span>
             </div>
 
             <div className="space-y-2 mb-4">
-              <div className="flex justify-between text-xs p-2 bg-slate-50 rounded-lg">
-                <span className="text-slate-500">Degree</span>
-                <span className="font-semibold text-slate-900">{deg.degree}</span>
-              </div>
-              <div className="flex justify-between text-xs p-2 bg-slate-50 rounded-lg">
-                <span className="text-slate-500">Field</span>
-                <span className="font-semibold text-slate-900">{deg.field}</span>
-              </div>
-              <div className="flex justify-between text-xs p-2 bg-slate-50 rounded-lg">
-                <span className="text-slate-500">Period</span>
-                <span className="font-semibold text-slate-900">{deg.start} — {deg.end}</span>
-              </div>
-              <div className="flex justify-between text-xs p-2 bg-slate-50 rounded-lg">
-                <span className="text-slate-500">Duration</span>
-                <span className="font-semibold text-slate-900">{deg.duration}</span>
-              </div>
+              {[
+                ['Degree', deg.degree],
+                ['Field', deg.field],
+                ['Period', `${deg.start} — ${deg.end}`],
+                ['Duration', deg.duration],
+              ].map(([label, value]) => (
+                <div key={label} className="flex justify-between text-xs p-2 bg-white/[0.03] rounded-lg border border-white/[0.04]">
+                  <span className="text-white/30">{label}</span>
+                  <span className="font-semibold text-white/80">{value}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Progress */}
             <div className="mb-3">
               <div className="flex justify-between items-center mb-1.5">
-                <span className="text-xs text-slate-500 font-medium">Completion</span>
+                <span className="text-xs text-white/30 font-medium">Completion</span>
                 <span className="text-xs font-bold" style={{ color: deg.color }}>{deg.progress}%</span>
               </div>
-              <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-2.5 w-full bg-white/[0.04] rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-700"
-                  style={{ width: `${deg.progress}%`, backgroundColor: deg.color }}
+                  style={{ width: `${deg.progress}%`, backgroundColor: deg.color, boxShadow: `0 0 10px ${deg.color}40` }}
                 ></div>
               </div>
             </div>
 
-            {/* Bard: Senior Project */}
             {deg.seniorProject && (
-              <div className="mt-4 p-3 bg-indigo-50 rounded-xl border border-indigo-100">
+              <div className="mt-4 p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
                 <div className="flex items-center gap-2 mb-1">
-                  <BookOpen size={14} className="text-indigo-600" />
-                  <span className="text-xs font-bold text-indigo-600 uppercase">Senior Project</span>
+                  <BookOpen size={14} className="text-indigo-400" />
+                  <span className="text-xs font-bold text-indigo-400 uppercase">Senior Project</span>
                 </div>
-                <p className="text-xs text-slate-700">Currently working on Senior Project — Senior I semester</p>
+                <p className="text-xs text-white/40">Currently working on Senior Project — Senior I semester</p>
               </div>
             )}
 
-            {/* Semesters */}
             <div className="mt-4">
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Semesters</p>
+              <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest mb-2">Semesters</p>
               <div className="grid grid-cols-3 gap-2">
                 {deg.semesters.map((sem, i) => (
                   <div
                     key={i}
                     className={`p-2 rounded-lg border text-center ${
                       sem.status === 'current'
-                        ? 'bg-indigo-50 border-indigo-200'
+                        ? 'bg-indigo-500/10 border-indigo-500/20'
                         : sem.status === 'upcoming'
-                        ? 'bg-slate-50/50 border-slate-100 opacity-60'
-                        : 'bg-slate-50 border-slate-100'
+                        ? 'bg-white/[0.02] border-white/[0.04] opacity-40'
+                        : 'bg-white/[0.03] border-white/[0.04]'
                     }`}
                   >
-                    <span className="text-[10px] text-slate-500 font-medium block">{sem.name}</span>
-                    <span className="text-xs font-bold text-slate-900">{sem.credits} cr</span>
+                    <span className="text-[10px] text-white/30 font-medium block">{sem.name}</span>
+                    <span className="text-xs font-bold text-white/80">{sem.credits} cr</span>
                   </div>
                 ))}
               </div>
@@ -179,21 +166,16 @@ export default function University() {
       </div>
 
       {/* Credit Accumulation Chart */}
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-base font-semibold text-slate-900 mb-1">Credit Accumulation</h3>
-        <p className="text-xs text-slate-500 mb-4">Both degrees combined</p>
+      <div className="glass-card rounded-2xl p-6">
+        <h3 className="text-base font-semibold text-white/90 mb-1">Credit Accumulation</h3>
+        <p className="text-xs text-white/30 mb-4">Both degrees combined</p>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={creditData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-            <XAxis dataKey="semester" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+            <XAxis dataKey="semester" tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.3)' }} axisLine={false} tickLine={false} />
+            <YAxis tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.3)' }} axisLine={false} tickLine={false} />
             <Tooltip
-              contentStyle={{
-                background: 'white',
-                border: '1px solid #e2e8f0',
-                borderRadius: '12px',
-                fontSize: '11px',
-              }}
+              contentStyle={{ background: 'rgba(20,20,35,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '11px', color: 'white' }}
             />
             <Bar dataKey="credits" fill="#6366f1" radius={[4, 4, 0, 0]} />
           </BarChart>
@@ -201,27 +183,27 @@ export default function University() {
       </div>
 
       {/* Timeline */}
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-base font-semibold text-slate-900 mb-6">Academic Timeline</h3>
+      <div className="glass-card rounded-2xl p-6">
+        <h3 className="text-base font-semibold text-white/90 mb-6">Academic Timeline</h3>
         <div className="relative">
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-slate-200"></div>
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-white/[0.06]"></div>
           <div className="space-y-4">
             {timeline.map((item, i) => (
               <div key={i} className="flex items-start gap-4 relative">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 ${
-                  item.done ? 'bg-green-100' : item.icon === 'current' ? 'bg-blue-100' : 'bg-slate-100'
+                  item.done ? 'bg-green-500/10' : item.icon === 'current' ? 'bg-blue-500/10' : 'bg-white/[0.04]'
                 }`}>
                   {item.done ? (
-                    <CheckCircle2 size={14} className="text-green-600" />
+                    <CheckCircle2 size={14} className="text-green-400" />
                   ) : item.icon === 'current' ? (
-                    <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse"></div>
+                    <div className="w-2.5 h-2.5 bg-blue-400 rounded-full animate-pulse"></div>
                   ) : (
-                    <Circle size={14} className="text-slate-300" />
+                    <Circle size={14} className="text-white/20" />
                   )}
                 </div>
-                <div className={`flex-1 pb-4 ${!item.done && item.icon !== 'current' ? 'opacity-50' : ''}`}>
-                  <p className="text-xs text-slate-400 font-medium mb-0.5">{item.date}</p>
-                  <p className="text-sm font-medium text-slate-900">{item.event}</p>
+                <div className={`flex-1 pb-4 ${!item.done && item.icon !== 'current' ? 'opacity-40' : ''}`}>
+                  <p className="text-xs text-white/30 font-medium mb-0.5">{item.date}</p>
+                  <p className="text-sm font-medium text-white/80">{item.event}</p>
                 </div>
               </div>
             ))}
