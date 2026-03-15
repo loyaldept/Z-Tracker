@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Bell, Search } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Bell, Search, LogOut } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
+  const { logout } = useAuth()
+  const navigate = useNavigate()
   const [currentTime, setCurrentTime] = useState(new Date())
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
@@ -100,6 +104,13 @@ export default function Header() {
         <button className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-blue-600 transition-colors relative">
           <Bell size={16} />
           <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-blue-500 rounded-full"></div>
+        </button>
+        <button 
+          onClick={() => { logout(); navigate('/login'); }}
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-red-600 transition-colors"
+          title="Sign out"
+        >
+          <LogOut size={16} />
         </button>
       </div>
     </header>

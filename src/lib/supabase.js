@@ -1,15 +1,53 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+// Try multiple env var formats for compatibility
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 
+                    import.meta.env.NEXT_PUBLIC_SUPABASE_URL || 
+                    import.meta.env.SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 
+                        import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
+                        import.meta.env.SUPABASE_ANON_KEY
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('[v0] Supabase credentials not found. Data will not persist.')
+  console.log('[v0] Available env vars:', Object.keys(import.meta.env))
 }
 
 export const supabase = supabaseUrl && supabaseAnonKey 
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null
+
+// Auth helper for simple password login
+export async function loginWithPassword(password) {
+  // Simple password check - stored in localStorage for session
+  const correctPassword = '2026zuhamakesit'
+  if (password === correctPassword) {
+    localStorage.setItem('ztrack_auth', 'authenticated')
+    localStorage.setItem('ztrack_auth_time', Date.now().toString())
+    return { success: true }
+  }
+  return { success: false, error: 'Invalid password' }
+}
+
+export function isAuthenticated() {
+  const auth = localStorage.getItem('ztrack_auth')
+  const authTime = localStorage.getItem('ztrack_auth_time')
+  
+  // Session expires after 7 days
+  if (auth === 'authenticated' && authTime) {
+    const elapsed = Date.now() - parseInt(authTime)
+    const sevenDays = 7 * 24 * 60 * 60 * 1000
+    if (elapsed < sevenDays) {
+      return true
+    }
+  }
+  return false
+}
+
+export function logout() {
+  localStorage.removeItem('ztrack_auth')
+  localStorage.removeItem('ztrack_auth_time')
+}
 
 // Helper function to fetch data with fallback
 export async function fetchFromDatabase(table, options = {}) {
