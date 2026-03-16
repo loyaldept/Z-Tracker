@@ -7,6 +7,7 @@ const STORAGE_KEYS = {
   transactions: 'ztrack_transactions',
   deadlines: 'ztrack_deadlines',
   achievements: 'ztrack_achievements',
+  revenue_entries: 'ztrack_revenue_entries',
 }
 
 // Local storage helpers with Supabase sync

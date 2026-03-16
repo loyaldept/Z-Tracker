@@ -32,15 +32,15 @@ export default function Sidebar() {
       <div className="p-6 lg:p-8 pb-4">
         <div className="flex items-center gap-3 mb-10">
           <div className="relative">
-            <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gradient-to-br from-blue-600 to-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold tracking-tighter text-xs shadow-lg shadow-blue-500/20">
-              ZT
+            <div className="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center">
+              <span className="text-white font-black text-xs tracking-tighter">Z</span>
+              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-blue-600 rounded-full border-2 border-white" />
             </div>
           </div>
           <div className="flex flex-col">
             <span className="font-bold tracking-tight text-base leading-none text-slate-900">ZTrack</span>
-            <span className="text-[9px] text-slate-500 font-bold tracking-[0.2em] mt-0.5">
-              DASHBOARD
+            <span className="text-[9px] text-slate-400 font-semibold tracking-[0.15em] mt-0.5">
+              by zhanoff
             </span>
           </div>
         </div>
@@ -67,19 +67,19 @@ export default function Sidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       isActive
-                        ? 'bg-blue-100 border border-blue-200 text-blue-700 shadow-sm'
+                        ? 'bg-slate-900 text-white shadow-sm'
                         : 'text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <Icon
                         size={18}
-                        className={isActive ? 'text-blue-600' : 'text-slate-400'}
+                        className={isActive ? 'text-blue-400' : 'text-slate-400'}
                       />
                       <span>{item.label}</span>
                     </div>
                     {item.badge && isActive && (
-                      <span className="text-[9px] bg-blue-200 text-blue-700 px-1.5 py-0.5 rounded-md font-bold">
+                      <span className="text-[9px] bg-blue-500/20 text-blue-300 px-1.5 py-0.5 rounded-md font-bold">
                         {item.badge}
                       </span>
                     )}
@@ -106,13 +106,13 @@ export default function Sidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       isActive
-                        ? 'bg-blue-100 border border-blue-200 text-blue-700 shadow-sm'
+                        ? 'bg-slate-900 text-white shadow-sm'
                         : 'text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     <Icon
                       size={18}
-                      className={isActive ? 'text-blue-600' : 'text-slate-400'}
+                      className={isActive ? 'text-blue-400' : 'text-slate-400'}
                     />
                     <span>{item.label}</span>
                   </NavLink>
@@ -138,13 +138,13 @@ export default function Sidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       isActive
-                        ? 'bg-blue-100 border border-blue-200 text-blue-700 shadow-sm'
+                        ? 'bg-slate-900 text-white shadow-sm'
                         : 'text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     <Icon
                       size={18}
-                      className={isActive ? 'text-blue-600' : 'text-slate-400'}
+                      className={isActive ? 'text-blue-400' : 'text-slate-400'}
                     />
                     <span>{item.label}</span>
                   </NavLink>
@@ -157,16 +157,17 @@ export default function Sidebar() {
 
       {/* User Profile */}
       <div className="mt-auto p-6">
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200/50 p-4 rounded-2xl">
+        <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl">
           <div className="flex items-center gap-3">
             <div className="relative shrink-0">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/20">
-                ZZ
+              <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-sm">
+                Z
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-blue-600 rounded-full border-2 border-white" />
               </div>
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
+              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-white rounded-full" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-slate-900 truncate tracking-tight">
+              <p className="text-sm font-bold text-slate-900 truncate tracking-tight">
                 Zuhayr
               </p>
               <p className="text-[10px] text-slate-500 font-medium truncate">
