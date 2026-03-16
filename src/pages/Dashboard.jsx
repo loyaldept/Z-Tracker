@@ -46,6 +46,22 @@ const ventureIcons = {
   openclaw: Zap, newsletter: Mail,
 }
 
+const ventureBrandImages = {
+  siml: '/images/siml.png',
+  corvus: '/images/corvus.png',
+  amazon: '/images/amazon.png',
+  chrome: '/images/chrome.png',
+}
+
+function VentureCardIcon({ venture }) {
+  const imgSrc = ventureBrandImages[venture.id]
+  if (imgSrc) {
+    return <img src={imgSrc} alt={venture.name} className="w-4 h-4 object-contain" />
+  }
+  const Icon = ventureIcons[venture.id] || Zap
+  return <Icon size={14} style={{ color: venture.color }} />
+}
+
 const kpiCards = [
   { label: 'Total Revenue', value: '$0.00', change: '+0%', icon: DollarSign, color: 'blue' },
   { label: 'Total Customers', value: '0', change: '+0%', icon: Users, color: 'indigo' },
@@ -107,7 +123,7 @@ export default function Dashboard() {
                   {card.change}
                 </span>
               </div>
-              <p className="text-2xl font-bold text-slate-900 tracking-tight">{card.value}</p>
+              <p className="text-2xl font-mono font-bold text-slate-900 tracking-tight">{card.value}</p>
               <p className="text-xs text-slate-500 mt-1 font-medium">{card.label}</p>
             </div>
           )
@@ -157,7 +173,7 @@ export default function Dashboard() {
                   <span className="text-[9px] font-bold text-green-400 uppercase">Live</span>
                 </div>
               </div>
-              <h3 className="text-3xl font-bold tracking-tighter">$0.00</h3>
+              <h3 className="text-3xl font-mono font-bold tracking-tighter">$0.00</h3>
               <p className="text-slate-500 text-xs mt-1">Across all 9 revenue channels</p>
               <div className="pt-4 mt-4 border-t border-white/10 flex justify-between items-center">
                 <div>
@@ -237,8 +253,8 @@ export default function Dashboard() {
               return (
                 <Link key={v.id} to="/ventures" className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-slate-300 transition-all group">
                   <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: v.bgColor }}>
-                      <Icon size={14} style={{ color: v.color }} />
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden" style={{ backgroundColor: v.bgColor }}>
+                      <VentureCardIcon venture={v} />
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs font-semibold text-slate-900 truncate">{v.name}</p>
@@ -247,7 +263,7 @@ export default function Dashboard() {
                   </div>
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="text-lg font-bold text-slate-900 tracking-tight">$0</p>
+                      <p className="text-lg font-mono font-bold text-slate-900 tracking-tight">$0</p>
                       <p className="text-[10px] text-slate-400">Revenue</p>
                     </div>
                     <div className="flex gap-px items-end h-8">
@@ -267,22 +283,22 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Jamka */}
         <Link to="/jamka" className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-rose-200 transition-all group relative overflow-hidden">
-          <div className="absolute -right-6 -bottom-6 text-rose-500/5 group-hover:text-rose-500/10 transition-all">
-            <Heart size={80} />
+          <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-all">
+            <img src="/images/zhamka.jpg" alt="" className="w-full h-full object-cover object-top" aria-hidden="true" />
           </div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center">
-                <Heart size={16} className="text-rose-500" />
+              <div className="w-9 h-9 rounded-xl overflow-hidden border border-rose-100 shadow-sm shrink-0">
+                <img src="/images/zhamka.jpg" alt="Zhamka" className="w-full h-full object-cover object-top" />
               </div>
               <div>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Project</p>
                 <p className="text-sm font-semibold text-slate-900">Jamka</p>
               </div>
             </div>
-            <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-              <span className="text-[10px] font-bold text-slate-400 uppercase block mb-0.5">Status</span>
-              <span className="text-xs font-semibold text-slate-700">Planning Phase</span>
+            <div className="p-2.5 bg-rose-50/80 rounded-xl border border-rose-100">
+              <span className="text-[10px] font-bold text-rose-400 uppercase block mb-0.5">Status</span>
+              <span className="text-xs font-semibold text-rose-700">Planning Phase</span>
             </div>
           </div>
         </Link>

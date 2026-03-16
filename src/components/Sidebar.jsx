@@ -31,18 +31,11 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="p-6 lg:p-8 pb-4">
         <div className="flex items-center gap-3 mb-10">
-          <div className="relative">
-            <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gradient-to-br from-blue-600 to-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold tracking-tighter text-xs shadow-lg shadow-blue-500/20">
-              ZT
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold tracking-tight text-base leading-none text-slate-900">ZTrack</span>
-            <span className="text-[9px] text-slate-500 font-bold tracking-[0.2em] mt-0.5">
-              DASHBOARD
-            </span>
-          </div>
+          <img
+            src="/images/zhanoff.png"
+            alt="Zhanoff"
+            className="h-7 object-contain"
+          />
         </div>
 
         {/* Navigation */}
@@ -128,7 +121,7 @@ export default function Sidebar() {
               </span>
             </div>
             <nav className="space-y-1">
-              {navItems.slice(5).map((item) => {
+              {navItems.slice(5, 6).map((item) => {
                 const Icon = item.icon
                 const isActive = location.pathname.startsWith(item.path)
                 return (
@@ -150,28 +143,46 @@ export default function Sidebar() {
                   </NavLink>
                 )
               })}
+              {/* Jamka — special item with photo */}
+              {(() => {
+                const jamka = navItems[6]
+                const isActive = location.pathname.startsWith(jamka.path)
+                return (
+                  <NavLink
+                    to={jamka.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
+                      isActive
+                        ? 'bg-pink-50 border border-pink-200 text-pink-700 shadow-sm'
+                        : 'text-slate-600 hover:bg-slate-100'
+                    }`}
+                  >
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden shrink-0 border border-slate-200">
+                      <img src="/images/zhamka.jpg" alt="Jamka" className="w-full h-full object-cover object-top" />
+                    </div>
+                    <span>Jamka</span>
+                    {isActive && <span className="ml-auto text-[9px] bg-pink-100 text-pink-600 px-1.5 py-0.5 rounded-md font-bold">♡</span>}
+                  </NavLink>
+                )
+              })()}
             </nav>
           </div>
         </div>
       </div>
 
-      {/* User Profile */}
-      <div className="mt-auto p-6">
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200/50 p-4 rounded-2xl">
+      {/* Bottom card */}
+      <div className="mt-auto p-5">
+        <div className="bg-gradient-to-br from-slate-50 to-blue-50/60 border border-slate-200/80 p-4 rounded-2xl">
           <div className="flex items-center gap-3">
             <div className="relative shrink-0">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/20">
-                ZZ
+              <div className="w-10 h-10 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                <img src="/images/zhamka.jpg" alt="Zhamka" className="w-full h-full object-cover object-top" />
               </div>
               <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-slate-900 truncate tracking-tight">
-                Zuhayr
-              </p>
-              <p className="text-[10px] text-slate-500 font-medium truncate">
-                Founder & Builder
-              </p>
+              <p className="text-sm font-semibold text-slate-900 truncate tracking-tight">Zuhayr</p>
+              <p className="text-[10px] text-slate-500 font-medium truncate">Founder & Builder</p>
             </div>
           </div>
         </div>

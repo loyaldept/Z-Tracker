@@ -34,11 +34,14 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Logo / Brand */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 shadow-lg mb-4">
-            <span className="text-2xl font-black text-white tracking-tighter">Z</span>
+          <div className="flex justify-center mb-5">
+            <img
+              src="/images/zhanoff.png"
+              alt="Zhanoff"
+              className="h-12 object-contain"
+            />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">ZTrack</h1>
-          <p className="text-sm text-slate-500 mt-1">Personal Dashboard</p>
+          <p className="text-xs text-slate-500 mt-1 font-medium tracking-widest uppercase">Personal Dashboard</p>
         </div>
 
         {/* Login Card */}
