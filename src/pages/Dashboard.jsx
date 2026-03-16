@@ -522,17 +522,22 @@ export default function Dashboard() {
           </div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center">
-                <Heart size={16} className="text-rose-500" />
+              <div className="relative shrink-0">
+                <div className="w-11 h-11 rounded-xl overflow-hidden border-2 border-rose-100 shadow-sm">
+                  <img src="/jamka.jpg" alt="Jamka" className="w-full h-full object-cover object-top" />
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-rose-500 rounded-full flex items-center justify-center border-2 border-white">
+                  <Heart size={8} className="text-white fill-white" />
+                </div>
               </div>
               <div>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Project</p>
                 <p className="text-sm font-bold text-slate-900">Jamka</p>
               </div>
             </div>
-            <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+            <div className="p-2.5 bg-rose-50/50 rounded-xl border border-rose-100">
               <span className="text-[10px] font-bold text-slate-400 uppercase block mb-0.5">Status</span>
-              <span className="text-xs font-semibold text-slate-700">Planning Phase</span>
+              <span className="text-xs font-semibold text-rose-600">Planning Phase</span>
             </div>
           </div>
         </Link>

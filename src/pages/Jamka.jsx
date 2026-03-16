@@ -55,24 +55,39 @@ export default function Jamka() {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Header */}
-      <div className="relative overflow-hidden rounded-2xl border border-rose-200 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-sm">
-        <div className="absolute -right-8 -top-8 text-rose-500/10">
-          <Heart size={120} />
+      <div className="relative overflow-hidden rounded-2xl border border-rose-200 bg-gradient-to-r from-rose-50 via-pink-50/80 to-white shadow-sm">
+        {/* Decorative hearts */}
+        <div className="absolute -right-6 -top-6 text-rose-500/5">
+          <Heart size={100} />
         </div>
-        <div className="relative z-10 p-8">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-12 h-12 rounded-xl bg-rose-100 border border-rose-200 flex items-center justify-center">
-              <Heart size={22} className="text-rose-500" />
+        <div className="absolute right-20 bottom-2 text-rose-500/5">
+          <Heart size={40} />
+        </div>
+
+        <div className="relative z-10 p-8 flex flex-col md:flex-row items-center gap-6">
+          {/* Photo */}
+          <div className="relative shrink-0">
+            <div className="w-28 h-28 rounded-2xl overflow-hidden border-4 border-white shadow-xl ring-2 ring-rose-200/60">
+              <img
+                src="/jamka.jpg"
+                alt="Jamka"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Project Jamka</h1>
-              <p className="text-sm text-rose-500 font-medium">Love, Planning & Forever</p>
+            <div className="absolute -bottom-1.5 -right-1.5 w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+              <Heart size={14} className="text-white fill-white" />
             </div>
           </div>
-          <p className="text-sm text-slate-600 max-w-lg mt-2">
-            Planning the proposal journey. Timeline: December 2026 — December 2027.
-            Every detail matters when it comes to the one you love.
-          </p>
+
+          {/* Text */}
+          <div className="text-center md:text-left">
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Project Jamka</h1>
+            <p className="text-sm text-rose-500 font-semibold mt-0.5">Love, Planning & Forever</p>
+            <p className="text-sm text-slate-500 max-w-md mt-2">
+              Planning the proposal journey. Timeline: December 2026 — December 2027.
+              Every detail matters when it comes to the one you love.
+            </p>
+          </div>
         </div>
       </div>
 
