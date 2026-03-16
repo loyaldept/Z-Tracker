@@ -6,8 +6,7 @@ import {
 import {
   DollarSign, Users, TrendingUp, ArrowUpRight, ArrowRight,
   Building, Bot, Package, Chrome, Activity, Zap,
-  ChevronRight, Sparkles, Heart,
-  Globe, Clock, Calendar, Target, Plus, X,
+  ChevronRight, Sparkles, Heart, Globe, Clock, Calendar, Target, Plus, X,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ventures as defaultVentures } from '../data/ventures'
