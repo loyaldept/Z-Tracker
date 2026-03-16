@@ -46,6 +46,13 @@ const ventureBrandImages = {
   chrome: '/images/chrome.png',
 }
 
+const ventureBrandColors = {
+  siml: { bg: 'bg-emerald-50', text: 'text-emerald-600', accent: '#10b981' },
+  corvus: { bg: 'bg-blue-50', text: 'text-blue-600', accent: '#1e3a5f' },
+  amazon: { bg: 'bg-amber-50', text: 'text-amber-600', accent: '#f59e0b' },
+  chrome: { bg: 'bg-blue-50', text: 'text-blue-600', accent: '#4285f4' },
+}
+
 function VentureCardIcon({ venture }) {
   const imgSrc = ventureBrandImages[venture.id]
   if (imgSrc) {
@@ -129,6 +136,65 @@ function AddRevenueModal({ ventures, onSave, onClose }) {
           <button onClick={handleSave} className="flex-1 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-500 transition-colors">
             Add Revenue
           </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CountdownTimer() {
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  useEffect(() => {
+    const tick = () => {
+      const target = new Date('January 1, 2027 00:00:00').getTime()
+      const diff = target - Date.now()
+      if (diff > 0) {
+        setCountdown({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000),
+        })
+      }
+    }
+    tick()
+    const timer = setInterval(tick, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const units = [
+    { label: 'Days', value: countdown.days },
+    { label: 'Hrs', value: countdown.hours },
+    { label: 'Min', value: countdown.minutes },
+    { label: 'Sec', value: countdown.seconds },
+  ]
+
+  return (
+    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-6 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Countdown to 2027</span>
+            <p className="text-xs text-slate-500 mt-0.5">2026 goal deadline</p>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Clock size={12} className="text-blue-400" />
+            <span className="text-[9px] font-bold text-blue-400 uppercase">Live</span>
+          </div>
+        </div>
+        <div className="grid grid-cols-4 gap-3">
+          {units.map((unit) => (
+            <div key={unit.label} className="text-center">
+              <div className="bg-white/[0.06] border border-white/[0.08] rounded-xl p-3 mb-2">
+                <span className="text-2xl lg:text-3xl font-mono font-bold text-white tabular-nums">
+                  {String(unit.value).padStart(2, '0')}
+                </span>
+              </div>
+              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.15em]">{unit.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
