@@ -15,8 +15,15 @@ export async function getLocalData(table) {
   const key = STORAGE_KEYS[table]
   if (!key) return []
 
-  const stored = localStorage.getItem(key)
-  return stored ? JSON.parse(stored) : []
+  try {
+    const stored = localStorage.getItem(key)
+    if (!stored) return []
+    const parsed = JSON.parse(stored)
+    return Array.isArray(parsed) ? parsed : []
+  } catch (e) {
+    console.warn(`[ZTrack] Failed to parse ${table} from localStorage:`, e)
+    return []
+  }
 }
 
 export async function saveLocalData(table, data) {

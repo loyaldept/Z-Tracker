@@ -33,10 +33,18 @@ export default function Ventures() {
   }, [])
 
   const loadData = async () => {
-    const stored = await getLocalData('ventures')
-    if (stored.length > 0) setVentures(stored)
-    const entries = await getLocalData('revenue_entries')
-    if (entries.length > 0) setRevenueEntries(entries)
+    try {
+      const stored = await getLocalData('ventures')
+      if (Array.isArray(stored) && stored.length > 0) setVentures(stored)
+    } catch (e) {
+      console.warn('Failed to load ventures:', e)
+    }
+    try {
+      const entries = await getLocalData('revenue_entries')
+      if (Array.isArray(entries) && entries.length > 0) setRevenueEntries(entries)
+    } catch (e) {
+      console.warn('Failed to load revenue entries:', e)
+    }
   }
 
   const handleAddRevenue = async () => {

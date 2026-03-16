@@ -225,10 +225,18 @@ export default function Dashboard() {
   }, [])
 
   const loadData = async () => {
-    const storedVentures = await getLocalData('ventures')
-    if (storedVentures.length > 0) setVentures(storedVentures)
-    const storedRevenue = await getLocalData('revenue_entries')
-    if (storedRevenue.length > 0) setRevenueEntries(storedRevenue)
+    try {
+      const storedVentures = await getLocalData('ventures')
+      if (Array.isArray(storedVentures) && storedVentures.length > 0) setVentures(storedVentures)
+    } catch (e) {
+      console.warn('Failed to load ventures from storage:', e)
+    }
+    try {
+      const storedRevenue = await getLocalData('revenue_entries')
+      if (Array.isArray(storedRevenue) && storedRevenue.length > 0) setRevenueEntries(storedRevenue)
+    } catch (e) {
+      console.warn('Failed to load revenue entries from storage:', e)
+    }
   }
 
   const handleAddRevenue = async (entry) => {
