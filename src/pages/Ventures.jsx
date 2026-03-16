@@ -1,23 +1,42 @@
 import { useState, useEffect } from 'react'
-import { Building, Bot, Package, Chrome, DollarSign, Plus, X } from 'lucide-react'
+import { FileText, TrendingUp, ShoppingBag, Zap, Mail, DollarSign, Plus, X } from 'lucide-react'
 import { ventures as defaultVentures } from '../data/ventures'
 import { getLocalData, saveLocalData, addItem } from '../lib/storage'
 
-const ventureIcons = {
-  siml: Building,
-  corvus: Bot,
-  amazon: Package,
-  chrome: Chrome,
+// Real brand image icons for known ventures
+const ventureBrandImages = {
+  siml: '/images/siml.png',
+  corvus: '/images/corvus.png',
+  amazon: '/images/amazon.png',
+  chrome: '/images/chrome.png',
 }
 
-const ventureBrandColors = {
-  siml: { bg: 'bg-emerald-50', text: 'text-emerald-600' },
-  corvus: { bg: 'bg-slate-100', text: 'text-slate-700' },
-  amazon: { bg: 'bg-amber-50', text: 'text-amber-600' },
-  chrome: { bg: 'bg-blue-50', text: 'text-blue-500' },
+// Fallback lucide icons for ventures without brand images
+const ventureFallbackIcons = {
+  notion: FileText,
+  trading: TrendingUp,
+  tiktok: ShoppingBag,
+  openclaw: Zap,
+  newsletter: Mail,
 }
 
-const categories = ['All', 'SaaS', 'AI Agency', 'E-Commerce', 'Software']
+function VentureIcon({ venture, size = 24 }) {
+  const imgSrc = ventureBrandImages[venture.id]
+  if (imgSrc) {
+    return (
+      <img
+        src={imgSrc}
+        alt={venture.name}
+        className="object-contain"
+        style={{ width: size, height: size }}
+      />
+    )
+  }
+  const Icon = ventureFallbackIcons[venture.id] || Zap
+  return <Icon size={size} style={{ color: venture.color }} />
+}
+
+const categories = ['All', 'SaaS', 'AI Agency', 'E-Commerce', 'Software', 'Digital Products', 'FinTech', 'Platform', 'Media']
 
 export default function Ventures() {
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -158,14 +177,11 @@ export default function Ventures() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filtered.map((venture) => {
-          const Icon = ventureIcons[venture.id] || Building
-          const brand = ventureBrandColors[venture.id] || { bg: 'bg-slate-50', text: 'text-slate-600' }
-          const ventureRevenue = venture.metrics?.revenue || venture.revenue || 0
           return (
             <div key={venture.id} onClick={() => setSelectedVenture(venture.id)} className={`bg-white border-2 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer ${selectedVenture === venture.id ? 'border-blue-500' : 'border-slate-200'}`}>
               <div className="flex items-start justify-between mb-4">
-                <div className={`w-12 h-12 rounded-xl ${brand.bg} flex items-center justify-center`}>
-                  <Icon size={20} className={brand.text} />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden" style={{ backgroundColor: venture.bgColor || '#f1f5f9' }}>
+                  <VentureIcon venture={venture} size={28} />
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase">{venture.category}</span>
               </div>
@@ -173,10 +189,8 @@ export default function Ventures() {
               <p className="text-xs text-slate-500 mb-4">{venture.description}</p>
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-2xl font-bold font-mono-nums revenue-text">
-                    ${ventureRevenue.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                  </p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Monthly</p>
+                  <p className="text-2xl font-bold font-mono text-slate-900">${(venture.revenue || 0).toLocaleString()}</p>
+                  <p className="text-[10px] text-slate-400">Monthly</p>
                 </div>
                 <div className="flex gap-px items-end h-8">
                   {[40, 60, 45, 70, 55, 80].map((h, i) => (

@@ -40,72 +40,28 @@ const ventureIcons = {
   siml: Building, corvus: Bot, amazon: Package, chrome: Chrome,
 }
 
-const ventureBrandColors = {
-  siml: { bg: 'bg-emerald-50', text: 'text-emerald-600', accent: '#10b981' },
-  corvus: { bg: 'bg-slate-100', text: 'text-slate-700', accent: '#1e3a5f' },
-  amazon: { bg: 'bg-amber-50', text: 'text-amber-600', accent: '#f59e0b' },
-  chrome: { bg: 'bg-blue-50', text: 'text-blue-500', accent: '#4285f4' },
+const ventureBrandImages = {
+  siml: '/images/siml.png',
+  corvus: '/images/corvus.png',
+  amazon: '/images/amazon.png',
+  chrome: '/images/chrome.png',
 }
 
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({})
+function VentureCardIcon({ venture }) {
+  const imgSrc = ventureBrandImages[venture.id]
+  if (imgSrc) {
+    return <img src={imgSrc} alt={venture.name} className="w-4 h-4 object-contain" />
+  }
+  const Icon = ventureIcons[venture.id] || Zap
+  return <Icon size={14} style={{ color: venture.color }} />
+}
 
-  useEffect(() => {
-    const calculateTime = () => {
-      const now = new Date()
-      const endOfYear = new Date(2027, 0, 1) // January 1, 2027
-      const diff = endOfYear - now
-
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-        return
-      }
-
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      })
-    }
-
-    calculateTime()
-    const timer = setInterval(calculateTime, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const units = [
-    { label: 'DAYS', value: timeLeft.days },
-    { label: 'HRS', value: timeLeft.hours },
-    { label: 'MIN', value: timeLeft.minutes },
-    { label: 'SEC', value: timeLeft.seconds },
-  ]
-
-  return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-6 lg:p-8 relative overflow-hidden">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-        backgroundSize: '20px 20px',
-      }} />
-      {/* Glow */}
-      <div className="absolute -right-20 -top-20 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-500/8 rounded-full blur-3xl" />
-
-      <div className="relative z-10">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-2 h-2 rounded-full bg-blue-400 animate-count-pulse" />
-              <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Live Countdown</span>
-            </div>
-            <h2 className="text-lg font-bold text-white tracking-tight">End of 2026</h2>
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Target</p>
-            <p className="text-xs text-slate-300 font-semibold">Dec 31, 2026</p>
-          </div>
-        </div>
+const kpiCards = [
+  { label: 'Total Revenue', value: '$0.00', change: '+0%', icon: DollarSign, color: 'blue' },
+  { label: 'Total Customers', value: '0', change: '+0%', icon: Users, color: 'indigo' },
+  { label: 'Monthly Recurring', value: '$0.00', change: '+0%', icon: TrendingUp, color: 'green' },
+  { label: 'Active Ventures', value: '9', change: 'All Channels', icon: Activity, color: 'purple' },
+]
 
         <div className="grid grid-cols-4 gap-3 lg:gap-4">
           {units.map((unit) => (
@@ -312,9 +268,7 @@ export default function Dashboard() {
                   {card.change}
                 </span>
               </div>
-              <p className={`text-2xl font-bold tracking-tight ${isRevenue ? 'revenue-text font-mono-nums' : 'text-slate-900'}`}>
-                {card.value}
-              </p>
+              <p className="text-2xl font-mono font-bold text-slate-900 tracking-tight">{card.value}</p>
               <p className="text-xs text-slate-500 mt-1 font-medium">{card.label}</p>
             </div>
           )
@@ -375,10 +329,8 @@ export default function Dashboard() {
                   <span className="text-[9px] font-bold text-green-400 uppercase">Live</span>
                 </div>
               </div>
-              <h3 className="text-3xl font-bold tracking-tighter font-mono-nums revenue-text">
-                ${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-              </h3>
-              <p className="text-slate-500 text-xs mt-1">Across all 4 revenue channels</p>
+              <h3 className="text-3xl font-mono font-bold tracking-tighter">$0.00</h3>
+              <p className="text-slate-500 text-xs mt-1">Across all 9 revenue channels</p>
               <div className="pt-4 mt-4 border-t border-white/10 flex justify-between items-center">
                 <div>
                   <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">Monthly</span>
@@ -457,10 +409,10 @@ export default function Dashboard() {
               const brand = ventureBrandColors[v.id] || { bg: 'bg-slate-50', text: 'text-slate-600' }
               const ventureRevenue = v.metrics?.revenue || 0
               return (
-                <Link key={v.id} to="/ventures" className="bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-slate-300 transition-all group">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-10 h-10 rounded-xl ${brand.bg} flex items-center justify-center`}>
-                      <Icon size={18} className={brand.text} />
+                <Link key={v.id} to="/ventures" className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-slate-300 transition-all group">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden" style={{ backgroundColor: v.bgColor }}>
+                      <VentureCardIcon venture={v} />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-bold text-slate-900 truncate">{v.name}</p>
@@ -469,10 +421,8 @@ export default function Dashboard() {
                   </div>
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="text-xl font-bold tracking-tight font-mono-nums revenue-text">
-                        ${ventureRevenue.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                      </p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">Revenue</p>
+                      <p className="text-lg font-mono font-bold text-slate-900 tracking-tight">$0</p>
+                      <p className="text-[10px] text-slate-400">Revenue</p>
                     </div>
                     <div className="flex gap-px items-end h-8">
                       {[40, 60, 45, 70, 55, 80].map((h, i) => (
@@ -516,23 +466,23 @@ export default function Dashboard() {
       {/* Quick Links Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Jamka */}
-        <Link to="/jamka" className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-rose-200 transition-all group relative overflow-hidden">
-          <div className="absolute -right-6 -bottom-6 text-rose-500/5 group-hover:text-rose-500/10 transition-all">
-            <Heart size={80} />
+        <Link to="/jamka" className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-rose-200 transition-all group relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-all">
+            <img src="/images/zhamka.jpg" alt="" className="w-full h-full object-cover object-top" aria-hidden="true" />
           </div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center">
-                <Heart size={16} className="text-rose-500" />
+              <div className="w-9 h-9 rounded-xl overflow-hidden border border-rose-100 shadow-sm shrink-0">
+                <img src="/images/zhamka.jpg" alt="Zhamka" className="w-full h-full object-cover object-top" />
               </div>
               <div>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Project</p>
                 <p className="text-sm font-bold text-slate-900">Jamka</p>
               </div>
             </div>
-            <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-              <span className="text-[10px] font-bold text-slate-400 uppercase block mb-0.5">Status</span>
-              <span className="text-xs font-semibold text-slate-700">Planning Phase</span>
+            <div className="p-2.5 bg-rose-50/80 rounded-xl border border-rose-100">
+              <span className="text-[10px] font-bold text-rose-400 uppercase block mb-0.5">Status</span>
+              <span className="text-xs font-semibold text-rose-700">Planning Phase</span>
             </div>
           </div>
         </Link>

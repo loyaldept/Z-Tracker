@@ -110,7 +110,7 @@ export default function Savings() {
             </div>
             <span className="text-[10px] bg-green-50 text-green-600 px-2 py-1 rounded-full font-bold border border-green-100">INCOME</span>
           </div>
-          <p className="text-2xl font-bold text-slate-900 tracking-tight">${totalIncome.toFixed(2)}</p>
+          <p className="text-2xl font-mono font-bold text-slate-900 tracking-tight">${totalIncome.toFixed(2)}</p>
           <p className="text-xs text-slate-500 mt-1">Total Income</p>
         </div>
 
@@ -121,7 +121,7 @@ export default function Savings() {
             </div>
             <span className="text-[10px] bg-red-50 text-red-600 px-2 py-1 rounded-full font-bold border border-red-100">EXPENSES</span>
           </div>
-          <p className="text-2xl font-bold text-slate-900 tracking-tight">${totalExpenses.toFixed(2)}</p>
+          <p className="text-2xl font-mono font-bold text-slate-900 tracking-tight">${totalExpenses.toFixed(2)}</p>
           <p className="text-xs text-slate-500 mt-1">Total Expenses</p>
         </div>
 
@@ -134,7 +134,7 @@ export default function Savings() {
               NET
             </span>
           </div>
-          <p className="text-2xl font-bold text-slate-900 tracking-tight">${netSavings.toFixed(2)}</p>
+          <p className="text-2xl font-mono font-bold text-slate-900 tracking-tight">${netSavings.toFixed(2)}</p>
           <p className="text-xs text-slate-500 mt-1">Net Savings</p>
         </div>
       </div>

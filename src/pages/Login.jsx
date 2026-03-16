@@ -48,37 +48,18 @@ export default function Login() {
   })
 
   return (
-    <div className="min-h-screen bg-slate-950 flex relative overflow-hidden">
-      {/* Ambient background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-600/6 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/3 rounded-full blur-3xl" />
-      </div>
-
-      {/* Left panel - branding */}
-      <div className="hidden lg:flex flex-1 flex-col justify-between p-12 relative z-10">
-        <div>
-          {/* Logo */}
-          <div className="flex items-center gap-3 mb-20">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
-              <span className="text-white font-black text-sm tracking-tighter">Z</span>
-            </div>
-            <span className="text-white font-bold text-lg tracking-tight">ZTrack</span>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Logo / Brand */}
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-5">
+            <img
+              src="/images/zhanoff.png"
+              alt="Zhanoff"
+              className="h-12 object-contain"
+            />
           </div>
-
-          {/* Time display */}
-          <div className="mb-8">
-            <p className="text-7xl font-bold text-white tracking-tighter leading-none">{formattedTime}</p>
-            <p className="text-sm text-slate-500 mt-3 font-medium">{formattedDate}</p>
-          </div>
-
-          {/* Motivational */}
-          <div className="max-w-md">
-            <p className="text-slate-400 text-base leading-relaxed">
-              Track your ventures. Build your empire. Every dollar counts on the path to extraordinary.
-            </p>
-          </div>
+          <p className="text-xs text-slate-500 mt-1 font-medium tracking-widest uppercase">Personal Dashboard</p>
         </div>
 
         <div className="flex items-center gap-3">
