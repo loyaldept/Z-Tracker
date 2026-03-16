@@ -9,6 +9,8 @@ const ventureBrandImages = {
   corvus: '/images/corvus.png',
   amazon: '/images/amazon.png',
   chrome: '/images/chrome.png',
+  hku: '/images/hku.png',
+  bard: '/images/bard.webp',
 }
 
 // Fallback lucide icons for ventures without brand images

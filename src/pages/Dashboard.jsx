@@ -63,39 +63,6 @@ const kpiCards = [
   { label: 'Active Ventures', value: '9', change: 'All Channels', icon: Activity, color: 'purple' },
 ]
 
-        <div className="grid grid-cols-4 gap-3 lg:gap-4">
-          {units.map((unit) => (
-            <div key={unit.label} className="text-center">
-              <div className="bg-white/[0.06] border border-white/[0.08] rounded-xl p-3 lg:p-4 mb-2">
-                <span className="countdown-digit text-3xl lg:text-4xl text-white">
-                  {String(unit.value || 0).padStart(2, '0')}
-                </span>
-              </div>
-              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.15em]">{unit.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Progress bar for the year */}
-        <div className="mt-6">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-[10px] text-slate-500 font-medium">Year progress</span>
-            <span className="text-[10px] text-blue-400 font-bold">
-              {Math.round(((new Date() - new Date(2026, 0, 1)) / (new Date(2027, 0, 1) - new Date(2026, 0, 1))) * 100)}%
-            </span>
-          </div>
-          <div className="h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full transition-all"
-              style={{ width: `${((new Date() - new Date(2026, 0, 1)) / (new Date(2027, 0, 1) - new Date(2026, 0, 1))) * 100}%` }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function AddRevenueModal({ ventures, onSave, onClose }) {
   const [ventureId, setVentureId] = useState(ventures[0]?.id || '')
   const [amount, setAmount] = useState('')
