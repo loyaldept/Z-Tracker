@@ -48,27 +48,41 @@ export default function Login() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo / Brand */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-5">
-            <img
-              src="/images/zhanoff.png"
-              alt="Zhanoff"
-              className="h-12 object-contain"
-            />
-          </div>
-          <p className="text-xs text-slate-500 mt-1 font-medium tracking-widest uppercase">Personal Dashboard</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex">
+      {/* Left panel - branding */}
+      <div className="hidden lg:flex flex-col justify-between w-[45%] p-10 relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
         </div>
 
-        <div className="flex items-center gap-3">
+        {/* Top - Logo */}
+        <div className="relative z-10">
+          <img
+            src="/images/zhanoff.png"
+            alt="Zhanoff"
+            className="h-10 object-contain brightness-0 invert"
+          />
+        </div>
+
+        {/* Center - Time display */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center">
+          <div className="space-y-2">
+            <p className="text-6xl font-mono font-bold text-white tracking-tight tabular-nums">{formattedTime}</p>
+            <p className="text-lg text-slate-400">{formattedDate}</p>
+          </div>
+        </div>
+
+        {/* Bottom - tagline */}
+        <div className="relative z-10 flex items-center gap-3">
           <div className="flex gap-1">
             <div className="w-2 h-2 rounded-full bg-blue-500" />
             <div className="w-2 h-2 rounded-full bg-blue-500/40" />
             <div className="w-2 h-2 rounded-full bg-blue-500/20" />
           </div>
-          <span className="text-xs text-slate-600 font-medium">Secure Dashboard</span>
+          <span className="text-xs text-slate-500 font-medium">Personal Dashboard</span>
         </div>
       </div>
 
@@ -76,17 +90,18 @@ export default function Login() {
       <div className="flex-1 flex items-center justify-center p-6 relative z-10">
         <div className="w-full max-w-sm">
           {/* Mobile logo */}
-          <div className="lg:hidden flex items-center gap-3 mb-10">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
-              <span className="text-white font-black text-sm tracking-tighter">Z</span>
-            </div>
-            <span className="text-white font-bold text-lg tracking-tight">ZTrack</span>
+          <div className="lg:hidden flex justify-center mb-10">
+            <img
+              src="/images/zhanoff.png"
+              alt="Zhanoff"
+              className="h-8 object-contain brightness-0 invert"
+            />
           </div>
 
           {/* Welcome */}
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-white tracking-tight">Welcome back, Zuhayr</h1>
-            <p className="text-sm text-slate-500 mt-2">Log in to ZTrack to continue</p>
+            <p className="text-sm text-slate-400 mt-2">Enter your password to continue</p>
           </div>
 
           {/* Form */}
@@ -104,7 +119,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="w-full pl-11 pr-11 py-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-sm text-white outline-none focus:ring-2 ring-blue-500/30 focus:border-blue-500/50 transition-all placeholder:text-slate-600"
+                  className="w-full pl-11 pr-11 py-3.5 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white outline-none focus:ring-2 ring-blue-500/30 focus:border-blue-500/50 transition-all placeholder:text-slate-500"
                   autoFocus
                 />
                 <button
