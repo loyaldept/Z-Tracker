@@ -5,7 +5,7 @@ import {
 } from 'recharts'
 import {
   DollarSign, Users, TrendingUp, ArrowUpRight, ArrowRight,
-  Building, Bot, Package, Chrome, Activity,
+  Building, Bot, Package, Chrome, Activity, Zap,
   ChevronRight, Sparkles, Heart,
   Globe, Clock, Calendar, Target, Plus, X,
 } from 'lucide-react'
